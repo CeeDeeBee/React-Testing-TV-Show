@@ -16,7 +16,7 @@ export default function App() {
 
 	useEffect(() => {
 		fetchShow().then(res => {
-			console.log(res);
+			// console.log(res);
 			setShow(res.data);
 			setSeasons(formatSeasons(res.data._embedded.episodes));
 		});
@@ -41,7 +41,7 @@ export default function App() {
 				value={selectedSeason || "Select a season"}
 				placeholder="Select an option"
 			/>
-			<Episodes episodes={episodes} />
+			<Episodes episodes={episodes} data-testid="episode" />
 		</div>
 	);
 }
