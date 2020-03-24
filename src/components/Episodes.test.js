@@ -1,9 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { BrowserRouter as Router } from "react-router-dom";
 import Episodes from "./Episodes";
 
 test("renders without errors", () => {
-	render(<Episodes episodes={[]} />);
+	render(
+		<Router>
+			<Episodes episodes={[]} />
+		</Router>
+	);
 });
 
 const mockEpisodes = [
@@ -60,11 +65,19 @@ const mockEpisodes = [
 ];
 
 test("Episodes render", () => {
-	const { queryAllByTestId, rerender } = render(<Episodes episodes={[]} />);
+	const { queryAllByTestId, rerender } = render(
+		<Router>
+			<Episodes episodes={[]} />
+		</Router>
+	);
 
 	expect(queryAllByTestId(/episode/i)).toHaveLength(0);
 
-	rerender(<Episodes episodes={mockEpisodes} />);
+	rerender(
+		<Router>
+			<Episodes episodes={mockEpisodes} />
+		</Router>
+	);
 
 	expect(queryAllByTestId(/episode/i)).toHaveLength(2);
 });

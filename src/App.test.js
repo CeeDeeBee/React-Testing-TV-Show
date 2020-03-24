@@ -1,6 +1,7 @@
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import { fetchShow as mockFetchShow } from "./api/fetchShow";
 
@@ -676,7 +677,11 @@ test("changing the season dropdown renders episodes", async () => {
 		queryAllByText,
 		queryAllByRole,
 		queryAllByTestId
-	} = render(<App />);
+	} = render(
+		<Router>
+			<App />
+		</Router>
+	);
 
 	await waitFor(() => {
 		getByText(/select a season/i);
